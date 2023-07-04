@@ -1,0 +1,100 @@
+package com.myprojectdemo;
+
+import java.util.Scanner;
+
+public class Atm {
+
+	
+	private static int Balance = 15000;
+	private static final int ATM_balance = 10000;
+	static Scanner sc =new Scanner(System.in);
+	public static void main(String[] args) throws InterruptedException {
+		Atm o=new Atm();
+		int PIN = 1965;
+		
+		System.out.println("******Welcome to abc ATM******");
+		System.out.println("Please insert your card");
+		Thread.sleep(3000);
+		int t=0;
+		do {
+		int k=1;
+		while(k<=3) {
+		
+			System.out.println("Enter your PIN:");
+			int pin= sc.nextInt();
+			if(pin==PIN) {
+				System.out.println("1.Balance Enquiry\n2.Withdrawal\n3.Deposit");
+				int option =sc.nextInt();
+				if(option==1) {
+					Thread.sleep(1000);
+					System.out.println("Your balance amount is "+Balance);
+					Thread.sleep(1000);
+					System.out.println("Thank you...visit again");
+					break;
+				}
+				else if(option==2) {
+					o.withdrawn();
+					break;
+					}
+				
+				else if(option==3) {
+					System.out.println("Enter your deposit amount ");
+					int dp=sc.nextInt();
+					Thread.sleep(1000);
+					System.out.println("Your amount was successfully debited**** ");
+					Balance=Balance+dp;
+					Thread.sleep(1000);
+					System.out.println("Now your balance amount is "+Balance);
+					break;
+				}
+				}
+			else if(k<=2){
+				System.out.println("PIN number is incorrect");
+				//System.out.println("Please enter the corect PIN");
+				
+				
+				}
+			else {
+				System.out.println("Sorry you can enter the wrong PIN number Too many times, So your card will be blocked");
+				}k++;
+		}
+		//Thread.sleep(500);
+			System.out.println("1.Exit\n2.Continue");
+			 t=sc.nextInt();
+		}
+		while(t==2);
+			
+	}
+
+		
+	
+
+	public void withdrawn() throws InterruptedException {
+
+		System.out.println("Enter your withdrawal amount ");
+		int withdraw= sc.nextInt();
+		
+		if(withdraw <= Balance) {
+			if(withdraw <= ATM_balance) {
+				
+				Thread.sleep(3000);
+				System.out.println("Collect your cash ");
+				Balance= Balance-withdraw;
+				Thread.sleep(1000);
+				System.out.println("your available balance is "+Balance);
+				System.out.println("Thank you...visit again");
+			
+			}
+			else {
+				System.out.println("Sorry if the ATM have not the sufficient amount");
+				
+			}
+		}
+		else {
+			System.out.println("Sorry your balance amount is rs "+Balance+" so enter the amount within the limit");
+		}
+		
+
+	}
+
+}
